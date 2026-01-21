@@ -2,11 +2,11 @@
 WORKDIR /app
 
 # Copy the project file from the subfolder
-COPY SkinCareTips/*.csproj ./ 
+COPY SkinCareRemedies/*.csproj ./ 
 RUN dotnet restore
 
 # Copy everything else from the project folder
-COPY SkinCareTips/. ./ 
+COPY SkinCareRemedies/. ./ 
 RUN dotnet publish -c Release -o out
 
 FROM mcr.microsoft.com/dotnet/aspnet:8.0
@@ -17,4 +17,4 @@ COPY --from=build /app/out ./
 ENV ASPNETCORE_URLS=http://+:8080
 EXPOSE 8080
 
-ENTRYPOINT ["dotnet", "SkinCareTips.dll"]
+ENTRYPOINT ["dotnet", "SkinCareRemedies.dll"]
